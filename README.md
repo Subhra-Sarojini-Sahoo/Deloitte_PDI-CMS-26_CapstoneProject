@@ -46,6 +46,26 @@ The system ensures secure access using JWT authentication and enforces role-base
 * **Containerization:** Docker & Docker Compose
 
 ---
+##  Prerequisites
+
+Before running the project, ensure the following are installed:
+
+Java 17+
+Node.js (v16+)
+MySQL Server
+Maven
+Docker (optional)
+##  Database Setup
+Ensure MySQL service is running
+Create the database:
+CREATE DATABASE eventzen_db;
+Tables will be automatically created by Hibernate (JPA)
+
+
+
+
+
+
 
 ##  Project Structure
 
@@ -70,6 +90,14 @@ EventZen/
 ```
 
 ---
+
+## 📂 Important Folder Paths
+Backend:
+eventzen/auth-service
+Frontend:
+eventzen-frontend
+Budget Service:
+eventzen-budget-service
 
 ##  Installation & Setup
 
@@ -173,7 +201,33 @@ npm start
 ```
 
 ---
+### 5. Default Admin Login
 
+Use the following credentials for administrator access:
+
+- **Email:** admin@eventzen.com  
+- **Password:** admin123  
+
+---
+
+### 6. Important Usage Flow
+
+After logging in, users should navigate through their respective dashboards instead of manually entering URLs.
+
+- **Admin**
+  - Logs in using default credentials
+  - Accesses the Admin Dashboard
+
+- **Vendor**
+  - Logs in and navigates to Vendor Dashboard
+  - Creates **Locations** and **Services**
+
+- **Customer**
+  - Logs in after vendor setup
+  - Browses available services
+  - Creates bookings
+
+> ⚠️ **Important:** If no services are created from the Vendor Dashboard, the customer services page may appear empty.
 
 
 ---
@@ -324,6 +378,17 @@ Each dashboard provides:
 
 * Users are expected to navigate through **dashboard UI**, not by directly entering URLs
 
+##  Troubleshooting
+Backend not starting / DB error
+Ensure MySQL is running
+Use localhost instead of mysql in DB URL for manual setup
+Login not working
+Check backend is running on port 8081
+Verify database connection
+Services not visible
+Ensure vendor has created services
+CORS error
+Ensure frontend is running on http://localhost:3000
 
 ## 📌 Important Notes
 
@@ -333,6 +398,9 @@ Each dashboard provides:
 * JWT token must be present for protected routes
 
 ---
+##  Note on Docker
+
+Docker setup is recommended for easier execution, as it automatically configures services including the database. Manual setup requires local database configuration.
 
 
 ## 👨‍💻 Author
