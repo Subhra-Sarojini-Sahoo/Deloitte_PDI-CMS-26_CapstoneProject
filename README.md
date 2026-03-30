@@ -93,16 +93,62 @@ docker-compose up --build
 
 ---
 
+Here is your **corrected manual run section** (accurate + submission-ready):
+
+---
+
 ### ▶️ Option 2: Run Manually
 
-#### 1. Backend (Spring Boot)
+#### 1. Start MySQL Database
+
+Ensure MySQL is running locally and create the required database:
 
 ```bash
-cd eventzen
+CREATE DATABASE eventzen_db;
+```
+
+---
+
+#### 2. Backend (Spring Boot)
+
+Before running the backend, update the database configuration in:
+
+```
+eventzen/auth-service/src/main/resources/application.properties
+```
+
+Change the datasource URL from:
+
+```
+spring.datasource.url=jdbc:mysql://mysql:3306/eventzen_db
+```
+
+to:
+
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/eventzen_db
+spring.datasource.username=root
+spring.datasource.password=your_password
+```
+
+> Note: The host `mysql` is used only in Docker setup. For manual execution, use `localhost`.
+
+Now run the backend:
+
+```bash
+cd eventzen/auth-service
 mvn spring-boot:run
 ```
 
-#### 2. Frontend (React)
+Backend runs on:
+
+```
+http://localhost:8081
+```
+
+---
+
+#### 3. Frontend (React)
 
 ```bash
 cd eventzen-frontend
@@ -110,13 +156,25 @@ npm install
 npm start
 ```
 
-#### 3. Budget Service (Optional)
+Frontend runs on:
+
+```
+http://localhost:3000
+```
+
+---
+
+#### 4. Budget Service
 
 ```bash
 cd eventzen-budget-service
 npm install
 npm start
 ```
+
+---
+
+
 
 ---
 
