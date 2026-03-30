@@ -224,6 +224,47 @@ Each dashboard provides:
 
 ---
 
+# System Constraints and Business Logic (Summary)
+
+* Role-based access control is enforced using JWT authentication (Customer, Vendor, Admin)
+
+* Only **Customers** can create bookings
+
+* Only **Vendors** can manage services and locations
+
+* **Admins** have full system access
+
+* Customers cannot create **overlapping bookings** for the same time
+
+* Services/locations cannot be **double-booked** at the same time
+
+* Booking must include valid:
+
+  * Date
+  * Start and end time
+  * Attendees
+  * Purpose
+
+* Booking lifecycle:
+
+  * PENDING → ACCEPTED / REJECTED
+  * Only vendors can update booking status
+
+* Vendors can manage **only their own services and locations**
+
+* All API requests require a **valid JWT token** for protected routes
+
+* Input validation ensures:
+
+  * No empty fields
+  * Positive attendee count
+  * Valid date and time
+
+* System maintains **data integrity** between users, services, bookings, and locations
+
+* Errors handled using proper HTTP status codes (400, 403, 404)
+
+* Users are expected to navigate through **dashboard UI**, not by directly entering URLs
 
 
 ## 📌 Important Notes
